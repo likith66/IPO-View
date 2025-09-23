@@ -175,3 +175,10 @@
     line-height: 1.4;
   }
   .ipo-details span { display: block; margin-bottom: 5px; }
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('GoodKing-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
