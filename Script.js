@@ -236,7 +236,7 @@ Retail Amount : Rs. ${formatNumber(retailAmount)}`;
         }
         @font-face {
           font-family: 'Good King';
-          src: url('GoodKing-Regular.ttf') format('truetype');
+          src: url('https://github.com/likith66/IPO-View/blob/main/GoodKing-Regular.ttf') format('truetype');
           font-weight: 400;
           font-style: normal;
         }
