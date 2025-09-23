@@ -1,0 +1,177 @@
+:root {
+    --stripe-width: 90px; /* Variable for controlling the width */
+    --overlay-color: rgba(0, 0, 0, 0.3); /* Light darkening overlay (adjust alpha for brightness control) */
+    }
+
+  body {
+    font-family: 'Century Gothic';  /*'Courier New', monospace;*/
+    /*background: #1a1a1a;*/
+    color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+    /*background: repeating-linear-gradient(
+        120deg,
+        #FFF8ED 0px,
+        #FFF8ED var(--stripe-width),
+        #FFBA45 var(--stripe-width),
+        #FFBA45 calc(var(--stripe-width) * 2),
+        #FF6842 calc(var(--stripe-width) * 2),
+        #FF6842 calc(var(--stripe-width) * 3),
+        #a74263 calc(var(--stripe-width) * 3),
+        #DF5584 calc(var(--stripe-width) * 4),
+        #595BA8 calc(var(--stripe-width) * 4),
+        #595BA8 calc(var(--stripe-width) * 5)
+      );*/
+      background: #222;
+      position: relative;
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    background: #111;
+    color: white;
+    font-family: sans-serif;
+  }
+
+  body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  }
+
+  #title-container {
+    position: relative;
+    height: 100vh; /* full screen height */
+    overflow: hidden;
+    background: #111;
+    user-select: none;
+  }
+  #title-wrapper {
+    width: 430px;
+    height: 209px;
+    pointer-events: none;
+    user-select: none;
+    position: fixed; /* fix position to viewport */
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+  }
+
+  body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-color);  /* Apply the overlay */
+    pointer-events: none; /* Ensure it doesn't interfere with interactions */
+    z-index: -1; /* Ensure it stays behind content */
+  }
+
+  /* Wrapper to control size and centering */
+    #title-wrapper {
+      width: 430px;     /* original width */
+      height: 180px;    /* original height */
+      margin: -40px auto 0; /* center horizontally + top margin */
+      position: relative;
+      z-index: 10;
+      padding-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /*background: #222;  just for visibility */
+    }
+
+    /* Scale and treat component like an image */
+    #title-wrapper > layered-title {
+      display: inline-block;
+      transform-origin: top left;
+      /* Example: scale to 0.7 (70% size) */
+      transform: scale(1);
+      /* Prevent component default sizing from interfering */
+      width: 500px;
+      height: 180px;
+      user-select: none;
+      pointer-events: none;
+      /* Make sure no overflow issues */
+      overflow: visible;
+    }
+
+    #navma {
+    height: 110px;
+    width: 100vw;
+    user-select: none;
+    position: fixed; /* fix position to viewport */
+    top: 0;
+    left: 0;
+    background: #111;
+    z-index: 9;
+    }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffcc70;
+    text-shadow: 2px 2px #333;
+  }
+  .ipo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .ipo-card {
+    display: flex;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    background: #2b2b2b;
+    border: 1px solid #444;
+    transition: transform 0.2s;
+  }
+  .ipo-card:hover { transform: translateY(-6px) scale(1.02); }
+  .ipo-left {
+    width: 35%;
+    background: #252525;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px;
+  }
+  .ipo-image { margin-bottom: 12px; }
+  .ipo-image img {
+    width: 85%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 2px solid #666;
+  }
+  .ipo-gmp {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #66ff99;
+    margin-top: 6px;
+  }
+  .ipo-right {
+    flex: 1;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .ipo-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  .ipo-details {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.4;
+  }
+  .ipo-details span { display: block; margin-bottom: 5px; }
