@@ -175,3 +175,37 @@
     line-height: 1.4;
   }
   .ipo-details span { display: block; margin-bottom: 5px; }
+
+.title-container {
+          position: relative;
+          width: 500px;
+          height: 250px;
+          user-select: none;
+        }
+        .layer {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+        .letter {
+          font-family: 'Good King', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1;
+          text-align: center;
+          -webkit-text-stroke-width: 1.67px;
+          -webkit-text-stroke-color: black;
+          user-select: none;
+          pointer-events: none;
+          display: inline-block;
+        }
+        @font-face {
+          font-family: 'Good King';
+          src: url('https://github.com/likith66/IPO-View/blob/main/GoodKing-Regular.ttf') format('truetype');
+          font-weight: 400;
+          font-style: normal;
+        }
