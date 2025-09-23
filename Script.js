@@ -234,12 +234,6 @@ Retail Amount : Rs. ${formatNumber(retailAmount)}`;
           pointer-events: none;
           display: inline-block;
         }
-        @font-face {
-          font-family: 'Good King';
-          src: url('https://github.com/likith66/IPO-View/blob/main/GoodKing-Regular.ttf') format('truetype');
-          font-weight: 400;
-          font-style: normal;
-        }
       `;
 
       this.shadowRoot.appendChild(style);
