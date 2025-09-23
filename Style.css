@@ -192,7 +192,7 @@
           pointer-events: none;
         }
         .letter {
-          font-family: 'Good King', sans-serif;
+          font-family: 'Good King';
           font-style: normal;
           font-weight: 400;
           line-height: 1;
@@ -205,7 +205,7 @@
         }
         @font-face {
           font-family: 'Good King';
-          src: url('https://github.com/likith66/IPO-View/blob/main/GoodKing-Regular.ttf') format('truetype');
+          src: url('GoodKing-Regular.ttf') format('truetype');
           font-weight: 400;
           font-style: normal;
         }
