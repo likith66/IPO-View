@@ -26,10 +26,14 @@ Promise.all([
     logoMap[l.ipo_news_title.trim().toLowerCase()] = l.logo_url;
   });
 
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(0,0,0,0);
+  
   // Filter only open IPOs
   const openIpos = ipoData.reportTableData.filter(item => {
     const closeDate = parseDate(item.Close);
-    return closeDate && closeDate >= today;
+    return closeDate && closeDate > yesterday;
   });
 
   // Sort IPOs by Open date ascending, then Close date ascending
