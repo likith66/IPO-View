@@ -144,7 +144,7 @@ Promise.all([
     const formatNumber = (num) => num.toLocaleString('en-IN');
 
     const copyText = `${item["~ipo_name"].trim()}
-Issue date : ${item.Open} to ${item.Close}
+Issue date : ${item.Open.split("<br>")[0]} to ${item.Close}
 Issue size : Rs. ${item["IPO Size"].replace('&#8377;', '')}
 Price : Rs. ${item['Price (₹)']}
 Lot size : ${item.Lot} shares
