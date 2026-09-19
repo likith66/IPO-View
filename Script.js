@@ -52,8 +52,6 @@ Promise.all([
     return 0;
   });
 
-  console.log("Open IPOs:", logoMap);
-  console.log("Open IPOs:", openIpos);
   openIpos.forEach(item => {
   const card = document.createElement('div');
   card.className = 'ipo-card';
