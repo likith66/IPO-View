@@ -1,4 +1,5 @@
-const dataApi = "https://webnodejs.investorgain.com/cloud/report/data-read/331/1/8/2025/2025-26/0/ipo";   // IPO details API
+//const dataApi = "https://webnodejs.investorgain.com/cloud/report/data-read/331/1/8/2025/2025-26/0/ipo";   // IPO details API
+const dataApi = "https://webnodejs.investorgain.com/cloud/v2/report/data-read/331/1/9/2026/2026-27/0/all";
 const logoApi = "https://webnodejs.chittorgarh.com/cloud/ipo/list-read";   // Logo API
 const logoBaseUrl = "https://www.chittorgarh.net/images/ipo/"; // Replace with actual API domain
 
@@ -29,11 +30,11 @@ Promise.all([
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   yesterday.setHours(0,0,0,0);
-  
+
   // Filter only open IPOs
   const openIpos = ipoData.reportTableData.filter(item => {
     const closeDate = parseDate(item.Close);
-    return closeDate && closeDate > yesterday;
+    return (closeDate && closeDate > yesterday) && item['~IPO_Category'] == "IPO";
   });
 
   // Sort IPOs by Open date ascending, then Close date ascending
@@ -51,6 +52,8 @@ Promise.all([
     return 0;
   });
 
+  console.log("Open IPOs:", logoMap);
+  console.log("Open IPOs:", openIpos);
   openIpos.forEach(item => {
   const card = document.createElement('div');
   card.className = 'ipo-card';
@@ -61,8 +64,8 @@ Promise.all([
 
   const imgBox = document.createElement('div');
   imgBox.className = 'ipo-image';
-  const logoFile = logoMap[item["~ipo_name"].trim().toLowerCase()];
-  const logoUrl = logoFile ? logoBaseUrl + logoFile : "https://via.placeholder.com/100?text=Logo";
+  const logoFile = logoMap[(item["~ipo_name"]+" IPO").trim().toLowerCase()];
+  const logoUrl = logoFile ? logoBaseUrl + logoFile : "./comIC.gif";
   imgBox.innerHTML = `<img src="${logoUrl}" alt="Company Logo">`;
 
   const gmpBox = document.createElement('div');
@@ -83,10 +86,10 @@ Promise.all([
   const details = document.createElement('div');
   details.className = 'ipo-details';
   details.innerHTML = `
-    <span><strong>Price:</strong> ₹${item.Price}</span>
+    <span><strong>Price:</strong> ₹${item['Price (₹)']}</span>
     <span><strong>Lot:</strong> ${item.Lot}</span>
     <span><strong>IPO Size:</strong> ${item["IPO Size"]}</span>
-    <span><strong>Open:</strong> ${item.Open}</span>
+    <span><strong>Open:</strong> ${item.Open.split("<br>")[0]}</span>
     <span><strong>Close:</strong> ${item.Close}</span>
     <span><strong>Listing:</strong> ${item.Listing}</span>
   `;
@@ -133,7 +136,7 @@ Promise.all([
   // Copy text format
   copyBtn.addEventListener('click', () => {
     // Calculate retail amount = Price * Lot
-    const priceNum = Number(item.Price.replace(/[^0-9.]/g, ''));
+    const priceNum = Number(item['Price (₹)'].replace(/[^0-9.]/g, ''));
     const lotNum = Number(item.Lot.replace(/[^0-9]/g, ''));
     const retailAmount = priceNum * lotNum;
 
@@ -142,8 +145,8 @@ Promise.all([
 
     const copyText = `${item["~ipo_name"].trim()}
 Issue date : ${item.Open} to ${item.Close}
-Issue size : Rs. ${item["IPO Size"]} crore
-Price : Rs. ${item.Price}
+Issue size : Rs. ${item["IPO Size"].replace('&#8377;', '')}
+Price : Rs. ${item['Price (₹)']}
 Lot size : ${item.Lot} shares
 Retail Amount : Rs. ${formatNumber(retailAmount)}`;
 
@@ -237,6 +240,12 @@ Retail Amount : Rs. ${formatNumber(retailAmount)}`;
           user-select: none;
           pointer-events: none;
           display: inline-block;
+        }
+        @font-face {
+          font-family: 'Good King';
+          src: url('GoodKing.woff2') format('woff2');
+          font-weight: 400;
+          font-style: normal;
         }
       `;
 
