@@ -146,7 +146,8 @@ Issue date : ${item.Open.split("<br>")[0]} to ${item.Close}
 Issue size : Rs. ${item["IPO Size"].replace('&#8377;', '')}
 Price : Rs. ${item['Price (₹)']}
 Lot size : ${item.Lot} shares
-Retail Amount : Rs. ${formatNumber(retailAmount)}`;
+Retail Amount : Rs. ${formatNumber(retailAmount)}
+Listing Date : ${item.Listing}`;
 
     navigator.clipboard.writeText(copyText).then(() => {
       copyBtn.textContent = '🍜';
